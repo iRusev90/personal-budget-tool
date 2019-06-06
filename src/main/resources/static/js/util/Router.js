@@ -4,9 +4,11 @@ bg.infa.pbt.util.Router = function() {
 	var self = this;
 
 	var containerElement = null;
+	var oldVm = null;
 
 	this.containerElementId = "";
 	this.routes = [];
+	
 
 	this.start = function() {
 		containerElement = document.getElementById(self.containerElementId);
@@ -38,10 +40,17 @@ bg.infa.pbt.util.Router = function() {
 		console.log("applying route: ");
 		console.log(route);
 		var vm = new route.vm();
+		if ($.isFunction(vm["init"])) {
+			vm.init();
+		}
 		$.get(route.view).then(function (viewContent) {
+			if (oldVm !== null && $.isFunction(oldVm["dispose"])) {
+				oldVm.dispose();
+			}
 			ko.cleanNode(containerElement);
 			containerElement.innerHTML = viewContent;
 			ko.applyBindings(vm, containerElement);
+			oldVm = vm;
 		});
 	}
 

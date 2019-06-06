@@ -3,6 +3,8 @@ namespace("bg.infa.pbt");
 bg.infa.pbt.Application = function() {
 
 	this.run = function() {
+		console.log("initing pbt app");
+
 		bg.infa.pbt.public = {};
 
 		bg.infa.pbt.public.restClinet = new bg.infa.pbt.util.RestClient();
@@ -10,12 +12,13 @@ bg.infa.pbt.Application = function() {
 
 		var layoutVm = new bg.infa.pbt.vm.LayoutVM();
 		layoutVm.init();
+		bg.infa.pbt.public.user = ko.observable();
 
 		ko.applyBindings(layoutVm);
 
 		configureRouter(router);
 		router.start();
-		console.log("initing pbt app");
+
 	};
 
 

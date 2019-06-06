@@ -1,3 +1,28 @@
 <div>
-	this is the login view
+    <div class="container register-form">
+        <div class="form">
+            <div class="note">
+				Login or Register
+            </div>
+
+            <div class="form-content">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input data-bind="value: name" type="text" class="form-control" placeholder="Your Name *" value="" />
+                        </div>
+                        
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input data-bind="value: password" type="password" class="form-control" placeholder="Your Password *" value="" />
+                        </div>
+                        
+                    </div>
+                </div>
+                <button data-bind="click: login" type="button" class="btnSubmit">Login</button>
+                <button data-bind="click: register" type="button" class="btnSubmit">Register</button>
+            </div>
+        </div>
+    </div>
 </div>
