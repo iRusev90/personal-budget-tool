@@ -10,9 +10,10 @@ bg.infa.pbt.Application = function() {
 		bg.infa.pbt.public.restClinet = new bg.infa.pbt.util.RestClient();
 		var router = new bg.infa.pbt.util.Router();
 
-		var layoutVm = new bg.infa.pbt.vm.LayoutVM();
-		layoutVm.init();
 		bg.infa.pbt.public.user = ko.observable();
+		var layoutVm = new bg.infa.pbt.vm.LayoutVM();
+		bg.infa.pbt.public.layoutVm = layoutVm;
+		layoutVm.init();
 
 		ko.applyBindings(layoutVm);
 
@@ -27,13 +28,13 @@ bg.infa.pbt.Application = function() {
 		var vms = bg.infa.pbt.vm;
 
 		var routes = [{
-			hash: "#/login",
-			view: "views/login-view.html",
-			vm: vms.LoginVM
-		}, {
 			hash: "#/home",
 			view: "views/home-view.html",
 			vm: vms.HomeVM
+		}, {
+			hash: "#/login",
+			view: "views/login-view.html",
+			vm: vms.LoginVM
 		}];
 
 		router.containerElementId = "content-wrapper";

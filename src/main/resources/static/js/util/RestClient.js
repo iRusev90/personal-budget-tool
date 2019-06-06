@@ -1,24 +1,50 @@
 namespace("bg.infa.pbt.util");
 
 bg.infa.pbt.util.RestClient = function() {
-	//TODO
-	this.post = function() {
+	let beforeExecutionInterceptors = [];
+	let afterExecutionInterceptors = [];
 
+	this.addBeforeExecutionInterceptor = function(beforeExecutionInterceptor) {
+		beforeExecutionInterceptors.push(beforeExecutionInterceptor);
 	};
 
-	this.get = function() {
+	this.addAfterExecutionInterceptor = function(afterExecutionInterceptor) {
+		afterExecutionInterceptors.push(afterExecutionInterceptor);
+	}
 
+	this.get = function(url) {
+		return this.execute({
+			method: "GET",
+			url: url
+		});
 	};
 
-	this.put = function() {
+	this.post = function(url, data, options) {
+		return this.execute($.extend({}, {
+			method: "POST",
+			url: url,
+			data: data,
+			contentType: "application/json"
+		}, options));
+	}
 
-	};
+	this.execute = function(ajaxOptions) {
+		let deferred = $.Deferred();
 
-	this.delete = function() {
+		beforeExecutionInterceptors.forEach(interceptor => {
+			interceptor(ajaxOptions);
+		});
 
-	};
+		$.ajax(ajaxOptions).done(function(resp) {
+			deferred.resolve(resp);
+		}).fail(function(resp) {
+			deferred.reject(resp);
+		});
 
-	this.execute = function() {
+		afterExecutionInterceptors.forEach(interceptor => {
+			interceptor(deferred);
+		});
 
-	};
+		return deferred;
+	}
 };

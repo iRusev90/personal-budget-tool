@@ -1,6 +1,8 @@
 namespace("bg.infa.pbt.vm");
 
 bg.infa.pbt.vm.LoginVM = function() {
+	var self = this;
+	let restClient = bg.infa.pbt.public.restClinet;
 
 	this.name = ko.observable();
 	this.password = ko.observable();
@@ -10,12 +12,29 @@ bg.infa.pbt.vm.LoginVM = function() {
 	};
 
 
-	this.login = function () {
-	    console.log("logging in as " + this.name() + " " + this.password());
+	this.register = function() {
+		let data = {
+			name: self.name(),
+			password: self.password()
+
+		};
+		restClient.post("api/users", JSON.stringify(data),
+			{
+				contentType: "application/json"	
+			}).done(() => {
+			alert("Successfully registered");	
+		}).fail(() => {
+			alert("could not register");	
+		});
 	};
 
-	this.register = function () {
-	    console.log("registering");
+	this.login = function() {
+		let url = "api/login?name=" + encodeURIComponent(self.name()) + "&password=" + encodeURIComponent(self.password());
+		restClient.post(url).done(() => {
+			bg.infa.pbt.public.layoutVm.onLogin();
+		}).fail(() => {
+			alert("Could not login");	
+		});
 	};
 
 };

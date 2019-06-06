@@ -13,7 +13,7 @@ bg.infa.pbt.util.Router = function() {
 	this.start = function() {
 		containerElement = document.getElementById(self.containerElementId);
 		window.onhashchange = onHashChangeRouteFunc;
-		applyRoute(self.routes[0]);
+		location.hash = self.routes[0].hash;
 	};
 
 	function onHashChangeRouteFunc() {
