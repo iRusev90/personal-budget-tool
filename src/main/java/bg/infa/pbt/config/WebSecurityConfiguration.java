@@ -43,7 +43,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 			.mvcMatchers("/index.html", "/js/**", "/node_modules/**", "/views/**", "api/bot**", "/favicon.ico", "api/user/**").permitAll()
 			.mvcMatchers(HttpMethod.POST, "/api/message")
 				.hasAnyRole(SecurityRole.ADMIN, SecurityRole.USER)
-			
+			.mvcMatchers(HttpMethod.POST, "/api/users").permitAll()
+			.mvcMatchers(HttpMethod.GET, "/api/users/current").authenticated()
 			.anyRequest().authenticated()
 		.and()
 			.formLogin()
