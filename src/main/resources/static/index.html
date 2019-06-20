@@ -23,6 +23,7 @@
     <script src="./js/vm/LoginVM.js"></script>
     <script src="./js/vm/ProfileVM.js"></script>
 	<script src="./js/vm/PaymentVM.js"></script>
+	<script src="./js/vm/ReportsVM.js"></script>
 
 	<script src="./js/model/Budget.js"></script>
     <script src="./js/model/BudgetCategory.js"></script>
@@ -72,6 +73,9 @@
                     <a class="nav-link" href="#/payments">Payments <span class="sr-only">(current)</span></a>
                 </li>
 
+                <li class="nav-item active">
+                    <a class="nav-link" href="#/reports">Reports <span class="sr-only">(current)</span></a>
+                </li>
 
                 <li class="nav-item active">
                     <button data-bind="click: logout">logout</button>
@@ -80,9 +84,12 @@
                 <!-- /ko -->
 
 
+                <!-- ko if: !bg.infa.pbt.public.user() -->
+
                 <li class="nav-item">
                     <a class="nav-link" href="#/login">Login/Register</a>
                 </li>
+				<!-- /ko -->
 
             </ul>
 

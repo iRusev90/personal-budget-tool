@@ -1,0 +1,71 @@
+<div data-bind="ko if: user()">
+    <h2>Reports View</h2>
+
+
+
+
+
+
+
+    <h3>1.------Payments-----------</h3>
+
+    <select data-bind="options: budgetCategories,
+								optionsText: 'name',
+								value: selectedBudgetCategory,
+								 optionsCaption: 'Choose Category'"></select>
+
+    <label for="monthFilter">month number</label>
+    <input id="monthFilter" data-bind="value: monthInput">
+
+    <!-- ko foreach: filteredPayments -->
+
+    <table>
+        <tr>
+            <td>payment id</td>
+            <td data-bind="text: id"></td>
+        </tr>
+        <tr>
+            <td>budget category</td>
+            <td data-bind="text: budgetCategory.name"></td>
+        </tr>
+        <tr>
+            <td>month number</td>
+            <td data-bind="text: monthNumber"></td>
+        </tr>
+        <tr>
+            <td>amount</td>
+            <td data-bind="text: amount"></td>
+        </tr>
+    </table>
+    <hr>
+    <!-- /ko -->
+
+    <h3>2.------Planned/Spent analysis----------</h3>
+
+    <!-- ko foreach: plannedAndSpent -->
+
+	<table>
+		<tr>
+			<td>budget id</td>
+			<td data-bind="text: id"></td>
+		</tr>
+		<tr>
+			<td>budget category</td>
+			<td data-bind="text: budgetCategory.name"></td>
+		</tr>
+		<tr>
+			<td>month number</td>
+			<td data-bind="text: monthNumber"></td>
+		</tr>
+		<tr>
+			<td>allowance</td>
+			<td data-bind="text: allowance"></td>
+		</tr>
+		<tr>
+			<td>actual spent</td>
+			<td data-bind="text: spent"></td>
+		</tr>
+	</table>
+	<hr>
+    <!-- /ko -->
+</div>

@@ -51,6 +51,10 @@ bg.infa.pbt.Application = function() {
 			hash: "#/payments",
 			view: "views/payments-view.html",
 			vm: vms.PaymentVM,
+		}, {
+			hash: "#/reports",
+			view: "views/reports-view.html",
+			vm: vms.ReportsVM,
 		}];
 
 		router.containerElementId = "content-wrapper";
