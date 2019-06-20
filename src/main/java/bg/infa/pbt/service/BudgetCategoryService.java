@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import bg.infa.pbt.budget.BudgetCategory;
 import bg.infa.pbt.budget.MonthlyBudget;
+import bg.infa.pbt.budget.Payment;
 import bg.infa.pbt.controller.param.BudgetCategoryParams;
 import bg.infa.pbt.exception.ApplicationException;
 import bg.infa.pbt.user.AppUser;
@@ -48,6 +49,12 @@ public class BudgetCategoryService {
 			}
 		}
 		
+		for (Payment payment: appUser.getPayments()) {
+			if (payment.getBudgetCategory().equals(budgetCategory)) {
+				throw new ApplicationException("Cannot delete category as it's used in payment:" + payment.getId());
+			}
+		}
+		
 		userService.getCurrentAppUser().getBudgetCategories().remove(budgetCategory);
 	}
 
@@ -64,6 +71,16 @@ public class BudgetCategoryService {
 		}).findAny().orElse(null);
 		
 		return budgetCategory;
+	}
+	
+	public BudgetCategory getBudetCategoryOrThrow(String bcName) {
+		BudgetCategory bc = this.getUserBudgetCategoryByName(bcName);
+		
+		if (bc == null) {
+			throw new ApplicationException("No business category with name: " + bcName);
+		}
+		
+		return bc;
 	}
 	
 	private BudgetCategory getModifiableNonNullBudgetCategoryOrThrow(String budgetCategoryName) {

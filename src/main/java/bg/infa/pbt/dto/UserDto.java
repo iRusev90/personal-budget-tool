@@ -4,6 +4,7 @@ import java.util.List;
 
 import bg.infa.pbt.budget.BudgetCategory;
 import bg.infa.pbt.budget.MonthlyBudget;
+import bg.infa.pbt.budget.Payment;
 
 public class UserDto {
 	private String username;
@@ -13,7 +14,16 @@ public class UserDto {
 	private String gender;
 	private List<BudgetCategory> budgetCategories;
 	private List<MonthlyBudget> budgets;
+	private List<Payment> payments;
 	
+	public List<Payment> getPayments() {
+		return payments;
+	}
+
+	public void setPayments(List<Payment> payments) {
+		this.payments = payments;
+	}
+
 	public List<MonthlyBudget> getBudgets() {
 		return budgets;
 	}

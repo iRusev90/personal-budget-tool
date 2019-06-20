@@ -19,14 +19,14 @@ public class BudgetService {
 	private UserService userService;
 
 	public void createUserBudget(@Valid BudgetParams params) {
-		BudgetCategory bc = getBudetCategoryOrThrow(params.getBudgetCategoryName());
+		BudgetCategory bc = this.budgetCategoryService.getBudetCategoryOrThrow(params.getBudgetCategoryName());
 		MonthlyBudget monthlyBudget = new MonthlyBudget(bc, params.getMonthId(), params.getAllowance());
 		userService.getCurrentAppUser().getMonthlyBudgets().add(monthlyBudget);
 	}
 
 	public void editUserBudget(int budgetId, @Valid BudgetParams params) {
 		MonthlyBudget budget = getMonthlyBudgetByIdOrThrow(params.getBudgetId());
-		BudgetCategory bc = getBudetCategoryOrThrow(params.getBudgetCategoryName());
+		BudgetCategory bc = this.budgetCategoryService.getBudetCategoryOrThrow(params.getBudgetCategoryName());
 		budget.setAllowance(params.getAllowance());
 		budget.setBudgetCategory(bc);
 		budget.setMonthNumber(params.getMonthId());
@@ -59,15 +59,5 @@ public class BudgetService {
 		
 		return monthlyBudget;
  	};
-	
-	private BudgetCategory getBudetCategoryOrThrow(String bcName) {
-		BudgetCategory bc = budgetCategoryService.getUserBudgetCategoryByName(bcName);
-		
-		if (bc == null) {
-			throw new ApplicationException("No business category with name: " + bcName);
-		}
-		
-		return bc;
-	}
 
 }
