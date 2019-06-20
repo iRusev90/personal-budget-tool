@@ -23,8 +23,6 @@ bg.infa.pbt.vm.LoginVM = function() {
 				contentType: "application/json"	
 			}).done(() => {
 			alert("Successfully registered");	
-		}).fail(() => {
-			alert("could not register");	
 		});
 	};
 
@@ -32,8 +30,6 @@ bg.infa.pbt.vm.LoginVM = function() {
 		let url = "api/login?name=" + encodeURIComponent(self.name()) + "&password=" + encodeURIComponent(self.password());
 		restClient.post(url).done(() => {
 			bg.infa.pbt.public.layoutVm.onLogin();
-		}).fail(() => {
-			alert("Could not login");	
 		});
 	};
 

@@ -3,8 +3,8 @@ namespace("bg.infa.pbt.vm");
 bg.infa.pbt.vm.ProfileVM = function() {
 	var self = this;
 	var UserProfileUpdateParams = bg.infa.pbt.model.UserProfileUpdateParams;
-	let restClient = bg.infa.pbt.public.restClinet;
-	let layoutVm = bg.infa.pbt.public.layoutVm;
+	var restClient = bg.infa.pbt.public.restClinet;
+	var layoutVm = bg.infa.pbt.public.layoutVm;
 
 	this.user = bg.infa.pbt.public.user;
 	this.userProfileUpdateParams = new UserProfileUpdateParams(self.user());

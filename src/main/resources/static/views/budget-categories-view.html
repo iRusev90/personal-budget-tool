@@ -1,0 +1,52 @@
+<div data-bind="if: user() != null">
+	<h2>User budget categories</h2>
+
+	<!-- ko foreach: user().budgetCategories -->
+	<table>
+		<tr>
+			<td>name:</td>
+			<td data-bind="text:name"></td>
+		</tr>
+		<tr>
+			<td>description:</td>
+			<td data-bind="text:description"></td>
+		</tr>
+		<tr>
+			<td>is enabled:</td>
+			<td data-bind="text:isEnabled"></td>
+		</tr>
+		<tr>
+			<td>is modifiable:</td>
+			<td data-bind="text:isModifiable"></td>
+		</tr>
+		<!-- ko if: isModifiable -->
+		<tr>
+			<td>disable/enable</td>
+			<td><button data-bind="click: function() {$root.switchEnabled(name, isEnabled)}">switch enabled state</button></td>
+		</tr>
+		<!-- /ko -->
+	</table>
+	<hr>
+	<!-- /ko -->	
+
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<table>
+		<tr>
+			<td>name:</td>
+			<td><input data-bind="value: inputBcName"></td>
+		</tr>
+		<tr>
+			<td>description:</td>
+			<td><input data-bind="value: inputBcDescription"></td>
+		</tr>
+	</table>
+	<button data-bind="click: addNewBc">add new</button>
+	<button data-bind="click: updateBc">update existing</button>
+	<button data-bind="click: deleteBc">delete existing</button>
+	
+
+</div>

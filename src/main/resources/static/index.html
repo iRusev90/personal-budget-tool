@@ -9,20 +9,22 @@
 
     <script src="./node_modules/jquery/dist/jquery.js"></script>
     <script src="./node_modules/bootstrap/dist/js/bootstrap.js"></script>
-	<script src="./node_modules/knockout/build/output/knockout-latest.debug.js"></script>
+    <script src="./node_modules/knockout/build/output/knockout-latest.debug.js"></script>
 
     <script src="./js/util/Namespace.js"></script>
     <script src="./js/util/RestClient.js"></script>
-	<script src="./js/util/Router.js"></script>
+    <script src="./js/util/Router.js"></script>
 
-	<script src="./js/vm/LayoutVM.js"></script>
+    <script src="./js/vm/LayoutVM.js"></script>
 
-	<script src="./js/vm/HomeVM.js"></script>
-	<script src="./js/vm/LoginVM.js"></script>
-	<script src="./js/vm/ProfileVM.js"></script>
+	<script src="./js/vm/BudgetCategoryVM.js"></script>
+    <script src="./js/vm/HomeVM.js"></script>
+    <script src="./js/vm/LoginVM.js"></script>
+    <script src="./js/vm/ProfileVM.js"></script>
 
-	<script src="./js/model/User.js"></script>
-	<script src="./js/model/UserProfileUpdateParams.js"></script>
+    <script src="./js/model/BudgetCategory.js"></script>
+    <script src="./js/model/User.js"></script>
+    <script src="./js/model/UserProfileUpdateParams.js"></script>
 
     <script src="./js/Application.js"></script>
 
@@ -36,16 +38,16 @@
 
 <body style="display:none" data-bind="visible:true">
 
-	<header>
-	
-    	<h1>Personal Budget Tool</h1>
-	</header>
+    <header>
+
+        <h1>Personal Budget Tool</h1>
+    </header>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-				<!-- ko if: bg.infa.pbt.public.user() != null -->
+                <!-- ko if: bg.infa.pbt.public.user() != null -->
                 <li class="nav-item active">
                     <a class="nav-link" href="#/home">Home <span class="sr-only">(current)</span></a>
                 </li>
@@ -53,24 +55,27 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="#/profile">Profile <span class="sr-only">(current)</span></a>
                 </li>
-
                 <li class="nav-item active">
-					<button data-bind="click: logout">logout</button>
+                    <a class="nav-link" href="#/budget-categories">Budget Categories <span class="sr-only">(current)</span></a>
                 </li>
 
-				<!-- /ko -->
+                <li class="nav-item active">
+                    <button data-bind="click: logout">logout</button>
+                </li>
 
-                
+                <!-- /ko -->
+
+
                 <li class="nav-item">
                     <a class="nav-link" href="#/login">Login/Register</a>
                 </li>
-                
+
             </ul>
-            
+
         </div>
     </nav>
 
-	<div id="content-wrapper"></div>
+    <div id="content-wrapper"></div>
 
 </body>
 

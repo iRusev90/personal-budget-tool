@@ -37,6 +37,15 @@ bg.infa.pbt.util.RestClient = function() {
 		}, options));
 	}
 
+	this.delete = function(url, data, options) {
+		return this.execute($.extend({}, {
+			method: "DELETE",
+			url: url,
+			data: JSON.stringify(data),
+			contentType: "application/json"
+		}, options));
+	}
+
 	this.execute = function(ajaxOptions) {
 		let deferred = $.Deferred();
 
@@ -47,6 +56,7 @@ bg.infa.pbt.util.RestClient = function() {
 		$.ajax(ajaxOptions).done(function(resp) {
 			deferred.resolve(resp);
 		}).fail(function(resp) {
+			alert("There was an error: " + JSON.stringify(resp));
 			deferred.reject(resp);
 		});
 

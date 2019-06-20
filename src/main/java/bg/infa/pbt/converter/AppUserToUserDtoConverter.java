@@ -17,6 +17,7 @@ public class AppUserToUserDtoConverter implements Converter<AppUser, UserDto> {
 		userDto.setAge(from.getAge());
 		userDto.setGender(from.getGender());
 		userDto.setInterests(from.getInterests());
+		userDto.setBudgetCategories(from.getBudgetCategories());
 		return userDto;
 	}
 

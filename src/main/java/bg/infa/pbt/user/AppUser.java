@@ -7,6 +7,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import bg.infa.pbt.budget.BudgetCategory;
 import bg.infa.pbt.security.SecurityRole;
 
 public class AppUser implements UserDetails {
@@ -20,6 +21,7 @@ public class AppUser implements UserDetails {
 	private String age;
 	private String gender;
 	private String interests;
+	private ArrayList<BudgetCategory> budgetCategories;
 	
 	public AppUser(String username, String password) {
 		grantedAuthorities = new ArrayList<SimpleGrantedAuthority>();
@@ -28,8 +30,10 @@ public class AppUser implements UserDetails {
 		this.isEnabled = true;
 		this.password = password;
 		this.username = username;
+		this.budgetCategories = new ArrayList<>();
+		this.budgetCategories.addAll(BudgetCategory.getDefaultBudgetCategories());
 	}
-	
+
 	public String getAge() {
 		return age;
 	}
@@ -61,6 +65,15 @@ public class AppUser implements UserDetails {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	public ArrayList<BudgetCategory> getBudgetCategories() {
+		return budgetCategories;
+	}
+
+	public void setBudgetCategories(ArrayList<BudgetCategory> budgetCategories) {
+		this.budgetCategories = budgetCategories;
+	}
+	
 	// ====== User details
 
 	@Override

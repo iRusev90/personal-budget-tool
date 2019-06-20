@@ -1,11 +1,24 @@
 package bg.infa.pbt.dto;
 
+import java.util.List;
+
+import bg.infa.pbt.budget.BudgetCategory;
+
 public class UserDto {
 	private String username;
 	private String name;
 	private String age;
 	private String interests;
 	private String gender;
+	private List<BudgetCategory> budgetCategories;
+
+	public List<BudgetCategory> getBudgetCategories() {
+		return budgetCategories;
+	}
+
+	public void setBudgetCategories(List<BudgetCategory> budgetCategories) {
+		this.budgetCategories = budgetCategories;
+	}
 
 	public String getAge() {
 		return age;

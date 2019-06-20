@@ -20,8 +20,6 @@ bg.infa.pbt.vm.LayoutVM = function() {
 		restClient.post("api/logout").done(() => {
 			self.user(null);	
 			location.hash = "#/login";   
-		}).fail(() => {
-			alert("Could not logout");	
 		});
 	};
 
