@@ -1,0 +1,61 @@
+<div data-bind="ko if: user()">
+    <h2>Budget View</h2>
+
+    <!-- ko foreach: user().budgets -->
+
+	<table>
+		<tr>
+			<td>budget id</td>
+			<td data-bind="text: id"></td>
+		</tr>
+		<tr>
+			<td>budget category</td>
+			<td data-bind="text: budgetCategory.name"></td>
+		</tr>
+		<tr>
+			<td>month number</td>
+			<td data-bind="text: monthNumber"></td>
+		</tr>
+		<tr>
+			<td>allowance</td>
+			<td data-bind="text: allowance"></td>
+		</tr>
+		<tr>
+			<td>copy budget for next month</td>
+			<td><button data-bind="click: function() { $root.cloneBudget(id);}">copy</button></td>
+		</tr>
+	</table>
+	<hr>
+    <!-- /ko -->
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <table>
+        <tr>
+            <td>business category</td>
+            <td>
+                <select data-bind="options: budgetCategories,
+								optionsText: 'name',
+								value: selectedBudgetCategory"></select>
+            </td>
+        </tr>
+        <tr>
+            <td>month number</td>
+            <td><input data-bind="value: monthInput"></td>
+        </tr>
+        <tr>
+            <td>allowance</td>
+            <td><input data-bind="value: allowance"></td>
+        </tr>
+        <tr>
+            <td>budget Id</td>
+            <td><input data-bind="value: budgetId"></td>
+        </tr>
+    </table>
+	<button data-bind="click: createBudget">create budget</button>
+	<button data-bind="click: editBudget">edit budget</button>
+
+
+</div>

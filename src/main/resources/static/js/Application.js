@@ -43,6 +43,10 @@ bg.infa.pbt.Application = function() {
 			hash: "#/budget-categories",
 			view: "views/budget-categories-view.html",
 			vm: vms.BudgetCategoryVM,
+		}, {
+			hash: "#/budget",
+			view: "views/budget-view.html",
+			vm: vms.BudgetVM,
 		}];
 
 		router.containerElementId = "content-wrapper";

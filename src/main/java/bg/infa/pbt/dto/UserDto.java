@@ -3,6 +3,7 @@ package bg.infa.pbt.dto;
 import java.util.List;
 
 import bg.infa.pbt.budget.BudgetCategory;
+import bg.infa.pbt.budget.MonthlyBudget;
 
 public class UserDto {
 	private String username;
@@ -11,6 +12,15 @@ public class UserDto {
 	private String interests;
 	private String gender;
 	private List<BudgetCategory> budgetCategories;
+	private List<MonthlyBudget> budgets;
+	
+	public List<MonthlyBudget> getBudgets() {
+		return budgets;
+	}
+
+	public void setBudgets(List<MonthlyBudget> budgets) {
+		this.budgets = budgets;
+	}
 
 	public List<BudgetCategory> getBudgetCategories() {
 		return budgetCategories;

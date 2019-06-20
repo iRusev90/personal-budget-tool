@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import bg.infa.pbt.budget.BudgetCategory;
+import bg.infa.pbt.budget.MonthlyBudget;
 import bg.infa.pbt.controller.param.BudgetCategoryParams;
 import bg.infa.pbt.exception.ApplicationException;
 import bg.infa.pbt.user.AppUser;
@@ -39,12 +40,30 @@ public class BudgetCategoryService {
 
 	public void deleteUserCategory(String budgetCategoryName) {
 		BudgetCategory budgetCategory = getModifiableNonNullBudgetCategoryOrThrow(budgetCategoryName);
+		AppUser appUser = userService.getCurrentAppUser();
+
+		for (MonthlyBudget monthlyBudget: appUser.getMonthlyBudgets()) {
+			if (monthlyBudget.getBudgetCategory().equals(budgetCategory)) {
+				throw new ApplicationException("Cannot delete category as it's used in budget:" + monthlyBudget.getId());
+			}
+		}
+		
 		userService.getCurrentAppUser().getBudgetCategories().remove(budgetCategory);
 	}
 
 	public void setEnableToUserBudgetCategory(String budgetCategoryName, Boolean isEnabled) {
 		BudgetCategory budgetCategory = getModifiableNonNullBudgetCategoryOrThrow(budgetCategoryName);
 		budgetCategory.setEnabled(isEnabled);
+	}
+	
+
+	public BudgetCategory getUserBudgetCategoryByName(String budgetCategoryName) {
+		AppUser appUser = userService.getCurrentAppUser();
+		BudgetCategory budgetCategory = appUser.getBudgetCategories().stream().filter(bc -> {
+			return bc.getName().equals(budgetCategoryName);
+		}).findAny().orElse(null);
+		
+		return budgetCategory;
 	}
 	
 	private BudgetCategory getModifiableNonNullBudgetCategoryOrThrow(String budgetCategoryName) {
@@ -56,15 +75,6 @@ public class BudgetCategoryService {
 		if (!budgetCategory.isModifiable()) {
 			throw new ApplicationException(budgetCategoryName + " category cannot be modified.");
 		}
-		
-		return budgetCategory;
-	}
-	
-	private BudgetCategory getUserBudgetCategoryByName(String budgetCategoryName) {
-		AppUser appUser = userService.getCurrentAppUser();
-		BudgetCategory budgetCategory = appUser.getBudgetCategories().stream().filter(bc -> {
-			return bc.getName().equals(budgetCategoryName);
-		}).findAny().orElse(null);
 		
 		return budgetCategory;
 	}

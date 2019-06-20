@@ -8,6 +8,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import bg.infa.pbt.budget.BudgetCategory;
+import bg.infa.pbt.budget.MonthlyBudget;
 import bg.infa.pbt.security.SecurityRole;
 
 public class AppUser implements UserDetails {
@@ -22,7 +23,8 @@ public class AppUser implements UserDetails {
 	private String gender;
 	private String interests;
 	private ArrayList<BudgetCategory> budgetCategories;
-	
+	private ArrayList<MonthlyBudget> monthlyBudgets;
+
 	public AppUser(String username, String password) {
 		grantedAuthorities = new ArrayList<SimpleGrantedAuthority>();
 		grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_" + SecurityRole.USER));
@@ -32,6 +34,7 @@ public class AppUser implements UserDetails {
 		this.username = username;
 		this.budgetCategories = new ArrayList<>();
 		this.budgetCategories.addAll(BudgetCategory.getDefaultBudgetCategories());
+		this.monthlyBudgets = new ArrayList<>();
 	}
 
 	public String getAge() {
@@ -72,6 +75,14 @@ public class AppUser implements UserDetails {
 
 	public void setBudgetCategories(ArrayList<BudgetCategory> budgetCategories) {
 		this.budgetCategories = budgetCategories;
+	}
+	
+	public ArrayList<MonthlyBudget> getMonthlyBudgets() {
+		return monthlyBudgets;
+	}
+
+	public void setMonthlyBudgets(ArrayList<MonthlyBudget> monthlyBudgets) {
+		this.monthlyBudgets = monthlyBudgets;
 	}
 	
 	// ====== User details

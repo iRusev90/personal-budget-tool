@@ -9,4 +9,8 @@ bg.infa.pbt.model.User = function(userDto) {
 	this.budgetCategories = ko.utils.arrayMap(userDto.budgetCategories, function(cDto) {
 		return new bg.infa.pbt.model.BudgetCategory(cDto);
 	});
+
+	this.budgets = ko.utils.arrayMap(userDto.budgets, function(bDto) {
+		return new bg.infa.pbt.model.Budget(bDto);
+	});
 };

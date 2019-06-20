@@ -13,7 +13,7 @@ bg.infa.pbt.util.Router = function() {
 	this.start = function() {
 		containerElement = document.getElementById(self.containerElementId);
 		window.onhashchange = onHashChangeRouteFunc;
-		location.hash = self.routes[0].hash;
+		onHashChangeRouteFunc();
 	};
 
 	function onHashChangeRouteFunc() {
@@ -28,8 +28,7 @@ bg.infa.pbt.util.Router = function() {
 		}
 
 		if (newRoute == null) {
-			alert("Unknown address");
-			return;
+			newRoute = routes[0];
 		}
 
 		applyRoute(newRoute);

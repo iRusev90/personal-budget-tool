@@ -10,7 +10,6 @@ bg.infa.pbt.vm.LayoutVM = function() {
 		console.log("initing LayoutVM");
 
 		self.getCurrentUser().done(function () {
-	 		location.hash = "#/home";   
 		}).fail(function () {
 			location.hash = "#/login";   
 		});
