@@ -19,6 +19,7 @@
 
 	<script src="./js/vm/HomeVM.js"></script>
 	<script src="./js/vm/LoginVM.js"></script>
+	<script src="./js/vm/ProfileVM.js"></script>
 
 	<script src="./js/model/User.js"></script>
 
@@ -36,7 +37,7 @@
 
 	<header>
 	
-    	<h1>Hello Personal Budget Tool</h1>
+    	<h1>Personal Budget Tool</h1>
 	</header>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -46,6 +47,10 @@
 				<!-- ko if: bg.infa.pbt.public.user() != null -->
                 <li class="nav-item active">
                     <a class="nav-link" href="#/home">Home <span class="sr-only">(current)</span></a>
+                </li>
+
+                <li class="nav-item active">
+                    <a class="nav-link" href="#/profile">Profile <span class="sr-only">(current)</span></a>
                 </li>
 
                 <li class="nav-item active">
