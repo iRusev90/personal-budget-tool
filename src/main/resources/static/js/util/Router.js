@@ -28,7 +28,7 @@ bg.infa.pbt.util.Router = function() {
 		}
 
 		if (newRoute == null) {
-			newRoute = routes[0];
+			newRoute = self.routes[0];
 		}
 
 		applyRoute(newRoute);

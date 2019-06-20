@@ -1,0 +1,60 @@
+<div data-bind="ko if: user()">
+	<h2>Payments View</h2>
+
+    <!-- ko foreach: user().payments -->
+
+	<table>
+		<tr>
+			<td>payment id</td>
+			<td data-bind="text: id"></td>
+		</tr>
+		<tr>
+			<td>budget category</td>
+			<td data-bind="text: budgetCategory.name"></td>
+		</tr>
+		<tr>
+			<td>month number</td>
+			<td data-bind="text: monthNumber"></td>
+		</tr>
+		<tr>
+			<td>amount</td>
+			<td data-bind="text: amount"></td>
+		</tr>
+		<tr>
+			<td>delete payment</td>
+			<td><button data-bind="click: function() { $root.deletePayment(id);}">delete</button></td>
+		</tr>
+	</table>
+	<hr>
+    <!-- /ko -->
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <table>
+        <tr>
+            <td>buget category</td>
+            <td>
+                <select data-bind="options: budgetCategories,
+								optionsText: 'name',
+								value: selectedBudgetCategory"></select>
+            </td>
+        </tr>
+        <tr>
+            <td>month number</td>
+            <td><input data-bind="value: monthInput"></td>
+        </tr>
+        <tr>
+            <td>amount</td>
+            <td><input data-bind="value: amount"></td>
+        </tr>
+        <tr>
+            <td>payment Id</td>
+            <td><input data-bind="value: paymentId"></td>
+        </tr>
+    </table>
+	<button data-bind="click: createPayment">create payment</button>
+	<button data-bind="click: editPayment">edit payment</button>
+</div>
+
