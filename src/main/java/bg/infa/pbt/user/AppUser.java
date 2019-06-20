@@ -16,6 +16,11 @@ public class AppUser implements UserDetails {
 	private String username;
 	private  ArrayList<SimpleGrantedAuthority> grantedAuthorities;
 	
+	private String name;
+	private String age;
+	private String gender;
+	private String interests;
+	
 	public AppUser(String username, String password) {
 		grantedAuthorities = new ArrayList<SimpleGrantedAuthority>();
 		grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_" + SecurityRole.USER));
@@ -24,6 +29,39 @@ public class AppUser implements UserDetails {
 		this.password = password;
 		this.username = username;
 	}
+	
+	public String getAge() {
+		return age;
+	}
+
+	public void setAge(String age) {
+		this.age = age;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public String getInterests() {
+		return interests;
+	}
+
+	public void setInterests(String interests) {
+		this.interests = interests;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	// ====== User details
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -58,6 +96,10 @@ public class AppUser implements UserDetails {
 	@Override
 	public boolean isEnabled() {
 		return this.isEnabled;
+	}
+	
+	public void setEnabled(boolean isEnabled) {
+		this.isEnabled = isEnabled;
 	}
 
 }

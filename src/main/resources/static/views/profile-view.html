@@ -1,1 +1,51 @@
-this is the profiel vm
+<div data-bind="if: user() != null">
+    <h2>User profile</h2>
+
+    <table data-bind="with: user">
+        <tr>
+            <td>name:</td>
+            <td data-bind="text: name"></td>
+        </tr>
+        <tr>
+            <td>age:</td>
+            <td data-bind="text: age"></td>
+        </tr>
+        <tr>
+            <td>gender:</td>
+            <td data-bind="text: gender"></td>
+        </tr>
+        <tr>
+            <td>interests:</td>
+            <td data-bind="text: interests"></td>
+        </tr>
+    </table>
+
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <h3>Update profile</h3>
+    <table data-bind="with: userProfileUpdateParams">
+        <tr>
+            <td>name:</td>
+            <td><input data-bind="value: name"></td>
+        </tr>
+        <tr>
+            <td>age:</td>
+            <td><input data-bind="value: age"></td>
+        </tr>
+        <tr>
+            <td>gender:</td>
+            <td><input data-bind="value: gender"></td>
+        </tr>
+        <tr>
+            <td>interests:</td>
+            <td><input data-bind="value: interests"></td>
+        </tr>
+    </table>
+	<button data-bind="click: updateProfile">update profile</button>
+
+	<button data-bind="click: disableUser">disable user</button>
+
+</div>

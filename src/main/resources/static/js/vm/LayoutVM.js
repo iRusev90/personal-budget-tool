@@ -3,12 +3,13 @@ namespace("bg.infa.pbt.vm");
 bg.infa.pbt.vm.LayoutVM = function() {
 	var self = this;
 	let restClient = bg.infa.pbt.public.restClinet;
+	bg.infa.pbt.public.layoutVm = this;
 	this.user = bg.infa.pbt.public.user; 
 
 	this.init = function() {
 		console.log("initing LayoutVM");
 
-		getCurrentUser().done(function () {
+		self.getCurrentUser().done(function () {
 	 		location.hash = "#/home";   
 		}).fail(function () {
 			location.hash = "#/login";   
@@ -25,15 +26,15 @@ bg.infa.pbt.vm.LayoutVM = function() {
 	};
 
 	this.onLogin = function () {
-	 	getCurrentUser().done(function () {
+	 	self.getCurrentUser().done(function () {
 	 		location.hash = "#/home";   
 	 	});   
 	};
 
-	function getCurrentUser() {
+	this.getCurrentUser = function()  {
 		return restClient.get("api/users/current").done(usrDto => {
 			self.user(new bg.infa.pbt.model.User(usrDto));
 		});
-	}
+	};
 
 };

@@ -26,6 +26,15 @@ bg.infa.pbt.util.RestClient = function() {
 			data: data,
 			contentType: "application/json"
 		}, options));
+	};
+
+	this.put = function(url, data, options) {
+		return this.execute($.extend({}, {
+			method: "PUT",
+			url: url,
+			data: JSON.stringify(data),
+			contentType: "application/json"
+		}, options));
 	}
 
 	this.execute = function(ajaxOptions) {
