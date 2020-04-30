@@ -23,7 +23,7 @@
     "homepage": "https://github.com/iRusev90/personal-budget-tool#readme",
     "dependencies": {
         "bootstrap": "4.3.1",
-        "jquery": "3.4.1",
+        "jquery": "3.5.0",
         "knockout": "3.5.0"
     },
     "devDependencies": {
